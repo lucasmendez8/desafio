@@ -18,3 +18,9 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('barrios/get_by_ciudad', 'BarrioController@getByCiudad')->name('barrios.get_by_ciudad');
+
+Route::resource('clientes', 'ClienteController');
+Route::resource('ciudades', 'CiudadeController');
+Route::resource('barrios', 'BarrioController');
+Route::resource('servicios', 'ServicioController');
