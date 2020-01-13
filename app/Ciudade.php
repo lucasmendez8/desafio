@@ -12,4 +12,9 @@ class Ciudade extends Model
     {
         return $this->hasMany(Cliente::class, 'ciudad_id', 'id');
     }
+
+    public function barrios()
+    {
+        return $this->hasMany(Barrios::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Barrio;
+use App\Ciudade;
 use Illuminate\Http\Request;
 
 class BarrioController extends Controller
@@ -14,7 +15,10 @@ class BarrioController extends Controller
      */
     public function index()
     {
-        //
+        $barrios = Barrio::latest()->paginate(10);
+
+        return view('barrios.index', compact('barrios'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -24,7 +28,8 @@ class BarrioController extends Controller
      */
     public function create()
     {
-        //
+        $ciudades = Ciudade::all()->pluck('nombre', 'id');
+        return view('barrios.create', compact('ciudades'));
     }
 
     /**
@@ -35,7 +40,19 @@ class BarrioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required | min: 3 | unique:barrios,nombre'
+        ], [
+            'required' => 'Este campo es obligatorio',
+            'min' => 'Este campo debe contener al menos 3 caracteres',
+            'unique' => 'Ya existe un barrio con el nombre ingresado'
+        ]);
+
+        $barrio = new Barrio();
+        $barrio->nombre = $request->get('nombre');
+        $barrio->save();
+
+        return redirect()->route('barrios.index');
     }
 
     /**
@@ -57,7 +74,8 @@ class BarrioController extends Controller
      */
     public function edit(Barrio $barrio)
     {
-        //
+        $ciudades = Ciudade::all()->pluck('nombre', 'id');
+        return view('barrios.edit', compact('barrio', 'ciudades'));
     }
 
     /**
@@ -69,7 +87,18 @@ class BarrioController extends Controller
      */
     public function update(Request $request, Barrio $barrio)
     {
-        //
+        $request->validate([
+            'nombre' => 'required | min: 3 | unique:barrios,nombre,'.$barrio->id,
+            'ciudad_id' => 'required'
+        ], [
+            'required' => 'Este campo es obligatorio',
+            'min' => 'Este campo debe contener al menos 3 caracteres',
+            'unique' => 'Ya existe un barrio con el nombre ingresado'
+        ]);
+
+        $barrio->update($request->all());
+
+        return redirect()->route('barrios.index');
     }
 
     /**

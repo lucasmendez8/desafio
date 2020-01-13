@@ -44,6 +44,9 @@
                             <li>
                                 <a class="nav-link text-primary" href="{{ route('ciudades.index') }}">Ciudades</a>
                             </li>
+                            <li>
+                                <a class="nav-link text-primary" href="{{ route('barrios.index') }}">Barrios</a>
+                            </li>
                         @endauth
                     </ul>
 
