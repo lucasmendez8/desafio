@@ -38,6 +38,9 @@
                             <li>
                                 <a class="nav-link text-primary" href="{{ route('clientes.index') }}">Clientes</a>
                             </li>
+                            <li>
+                                <a class="nav-link text-primary" href="{{ route('servicios.index') }}">Servicios</a>
+                            </li>
                         @endauth
                     </ul>
 

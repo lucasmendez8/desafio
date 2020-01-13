@@ -14,7 +14,10 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        //
+        $servicios = Servicio::latest()->paginate(10);
+
+        return view('servicios.index', compact('servicios'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -24,7 +27,7 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        //
+        return view('servicios.create');
     }
 
     /**
@@ -35,7 +38,19 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required | min: 3 | unique:servicios,nombre'
+        ], [
+            'required' => 'Este campo es obligatorio',
+            'min' => 'Este campo debe contener al menos 3 caracteres',
+            'unique' => 'Ya existe un servicio con el nombre ingresado'
+        ]);
+
+        $servicio = new Servicio();
+        $servicio->nombre = $request->get('nombre');
+        $servicio->save();
+
+        return redirect()->route('servicios.index');
     }
 
     /**
@@ -57,7 +72,7 @@ class ServicioController extends Controller
      */
     public function edit(Servicio $servicio)
     {
-        //
+        return view('servicios.edit', compact('servicio'));
     }
 
     /**
@@ -69,17 +84,29 @@ class ServicioController extends Controller
      */
     public function update(Request $request, Servicio $servicio)
     {
-        //
+        $request->validate([
+            'nombre' => 'required | min: 3 | unique:servicios,nombre,'.$servicio->id
+        ], [
+            'required' => 'Este campo es obligatorio',
+            'min' => 'Este campo debe contener al menos 3 caracteres',
+            'unique' => 'Ya existe un servicio con el nombre ingresado'
+        ]);
+
+        $servicio->update($request->all());
+
+        return redirect()->route('servicios.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Servicio  $servicio
+     * @param \App\Servicio $servicio
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Servicio $servicio)
     {
-        //
+        $servicio->delete();
+        return redirect()->route('servicios.index');
     }
 }

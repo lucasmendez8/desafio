@@ -78,7 +78,7 @@
 
                                         <div class="form-row">
                                             <div class="form-group col-6">
-                                                <label for="servicio @error('servicio_id') class="text-danger" @enderror">Servicio</label>
+                                                <label for="servicio" @error('servicio_id') class="text-danger" @enderror>Servicio</label>
                                                 <select class="form-control @error('servicio_id') border border-danger @enderror" id="servicio" name="servicio_id">
                                                     <option value="">Seleccione un servicio ...</option>
                                                     @foreach($servicios as $index => $servicio)

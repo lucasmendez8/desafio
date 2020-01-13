@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Clientes</div>
+                    <div class="card-header">Servicios</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -18,8 +18,8 @@
 
                             <div class="row mb-3">
                                 <div class="col">
-                                    <a href="{{ route('clientes.create')  }}">
-                                        <button class="btn btn-success">Agregar Cliente</button>
+                                    <a href="{{ route('servicios.create')  }}">
+                                        <button class="btn btn-success">Agregar Servicio</button>
                                     </a>
                                 </div>
                             </div>
@@ -30,35 +30,22 @@
                                         <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>CUIT/CUIL</th>
-                                            <th>Dirección</th>
-                                            <th>Barrio</th>
-                                            <th>Ciudad</th>
-                                            <th>Servicio</th>
-                                            <th>Estado Servicio</th>
                                             <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($clientes as $cliente)
+                                        @foreach($servicios as $servicio)
                                             <tr>
-                                                <td>{{ $cliente->apellidos . ', ' . $cliente->nombres }}</td>
-                                                <td>{{ $cliente->cuit }}</td>
-                                                <td>{{ $cliente->direccion }}</td>
-                                                <td>{{ $cliente->barrio->nombre }}</td>
-                                                <td>{{ $cliente->ciudad->nombre }}</td>
-                                                <td>{{ $cliente->servicio->nombre }}</td>
+                                                <td>{{ $servicio->nombre }}</td>
                                                 <td>
-                                                    @if($cliente->estado_servicio == 1)
-                                                        Activo
-                                                    @else
-                                                        No Activo
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('clientes.edit', ['cliente' => $cliente->id])  }}">
+                                                    <a class="float-left mr-2" href="{{ route('servicios.edit', ['servicio' => $servicio->id])  }}">
                                                         <button class="btn btn-success">Editar</button>
                                                     </a>
+                                                    <form action="{{ route('servicios.destroy', ['servicio' => $servicio->id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -76,7 +63,7 @@
         <div class="row justify-content-center mt-3">
             <div class="row">
                 <div class="col">
-                    {!! $clientes->links() !!}
+                    {!! $servicios->links() !!}
                 </div>
             </div>
         </div>
