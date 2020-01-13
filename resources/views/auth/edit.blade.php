@@ -29,7 +29,7 @@
 
                                         <div class="form-row">
 
-                                            <img width="100px" @if($user->avatar == '') src="{{ asset('storage/avatars/user.png') }}" @else src="{{ asset('storage/avatars/'.$user->avatar) }}" @endif />
+                                            <img width="100px" @if($user->avatar == '') src="{{ asset('avatars/user.png') }}" @else src="{{ asset('storage/avatars/'.$user->avatar) }}" @endif />
 
                                             <div class="form-group col-6">
                                                 <label for="avatar">Avatar</label>

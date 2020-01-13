@@ -8,6 +8,11 @@ use Illuminate\Http\Response;
 
 class CiudadeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
