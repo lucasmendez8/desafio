@@ -52,7 +52,7 @@
                                                     @if($cliente->estado_servicio == 1)
                                                         Activo
                                                     @else
-                                                        No Activo
+                                                        Inactivo
                                                     @endif
                                                 </td>
                                                 <td>
