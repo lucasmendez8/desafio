@@ -15,5 +15,5 @@ Una vez descargado o clonado el proyecto:
 **6-** Correr en consola *"php artisan migrate"*.
 
 **7-** Finalmente, este proyecto cuenta con seeders para cargar datos iniciales en la base de datos.
-Ejecutar *"php artisan db:seed"* para ello. Únicamente no se genera un user en la tabla users. Por lo que al
-correr el proyecto por primera vez deberá crear uno con en la opción "Register".
+Ejecutar *"php artisan db:seed"* para ello. Se cargan datos en todas las tablas, con excepción de la tabla
+users. Deberá crearse el usuario a través de la opción Register el proyecto.
