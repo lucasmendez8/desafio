@@ -56,11 +56,17 @@
                         @else
 
                             <li class="nav-item dropdown">
+
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img class="rounded-circle mr-2" width="30px" @if(Auth::user()->avatar == '') src="{{ asset('storage/avatars/user.png') }}" @else src="{{ asset('storage/avatars/'.Auth::user()->avatar) }}" @endif />
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('perfil.editar') }}">
+                                        Editar Perfil
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

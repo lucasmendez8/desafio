@@ -20,6 +20,11 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('barrios/get_by_ciudad', 'BarrioController@getByCiudad')->name('barrios.get_by_ciudad');
 
+Route::get('image', 'ImageController@index');
+Route::get('save', 'ImageController@save');
+Route::get('perfil/editar', 'UserController@edit')->name('perfil.editar');
+Route::put('perfil/{id}', 'UserController@update')->name('perfil.update');
+
 Route::resource('clientes', 'ClienteController');
 Route::resource('ciudades', 'CiudadeController');
 Route::resource('barrios', 'BarrioController');

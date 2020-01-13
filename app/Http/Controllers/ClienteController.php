@@ -7,7 +7,6 @@ use App\Cliente;
 use App\Servicio;
 use App\Barrio;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ClienteController extends Controller
 {
@@ -139,13 +138,5 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         //
-    }
-
-
-    public function messages()
-    {
-        return [
-          'apellidos.required' => 'El campo apellidos es obligatorio'
-        ];
     }
 }
