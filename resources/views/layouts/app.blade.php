@@ -41,6 +41,9 @@
                             <li>
                                 <a class="nav-link text-primary" href="{{ route('servicios.index') }}">Servicios</a>
                             </li>
+                            <li>
+                                <a class="nav-link text-primary" href="{{ route('ciudades.index') }}">Ciudades</a>
+                            </li>
                         @endauth
                     </ul>
 
